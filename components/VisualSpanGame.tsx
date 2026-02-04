@@ -4,51 +4,62 @@ import styles from "../app/page.module.css";
 import { useVisualSpanGame } from "../hooks/useVisualSpanGame";
 
 export default function VisualSpanGame() {
-  const { phase, answer, input, setInput, result, startRound, submit } =
-    useVisualSpanGame(3, 1000);
+  const { score, record, phase, answer, input, setInput, result, startRound, submit } =
+    useVisualSpanGame(1000);
 
   return (
     <main className={styles.page}>
-      <div className={styles.card}>
-        <h1 className={styles.title}>Visual Span</h1>
+        <div className={styles.card}>
+            <h1 className={styles.title}>Visual Span</h1>
 
-        <section className={styles.display}>
-          {phase === "showing" && <div className={styles.number}>{answer}</div>}
+            <section className={styles.display}>
+                {phase === "showing" && <div className={styles.number}>{answer}</div>}
 
-          {phase === "idle" && result !== null && (
-            <p className={styles.number}>{result ? "✅" : "❌"}</p>
-          )}
-        </section>
+                {phase === "idle" && result !== null && (
+                    <>
+                        <div className={styles.idleEmoji}>
+                            {result ? "✅" : "❌"}
+                        </div>
 
-        <section className={styles.controls}>
-          <div className={styles.controlsStack}>
-            <input
-              className={`${styles.input} ${
-                phase === "answering" ? "" : styles.inputHidden
-              }`}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && submit()}
-              placeholder="輸入數字"
-              disabled={phase !== "answering"}
-            />
+                        <div className={styles.idleText}>
+                            {result
+                            ? `下一關為 ${score} 位數字`
+                            : `您最多記憶了 ${record} 位數字`}
+                        </div>
+                    </>
+                )}
+            </section>
 
-            {phase === "idle" ? (
-              <button className={styles.primaryButton} onClick={startRound}>
-                New Game
-              </button>
-            ) : phase === "answering" ? (
-              <button className={styles.primaryButton} onClick={submit}>
-                Submit
-              </button>
-            ) : (
-              <button className={styles.primaryButton} disabled>
-                &nbsp;
-              </button>
-            )}
-          </div>
-        </section>
-      </div>
+            <section className={styles.controls}>
+                <div className={styles.controlsStack}>
+                    {phase === "idle" && (
+                        <button 
+                            autoFocus
+                            className={styles.primaryButton}
+                            onClick={startRound}
+                        >
+                            {result ? "Next Level" : "New Game"}
+                        </button>
+                    )}
+
+                    {phase === "answering" && (
+                        <input
+                            autoFocus
+                            className={styles.input}
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    submit();
+                                }
+                                }}
+                            placeholder="輸入數字"
+                        />
+                    )}
+                </div>
+            </section>
+        </div>
     </main>
   );
 }
