@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Visual Span (Next.js)
 
-## Getting Started
+線上 Demo：
+https://visual-span-demo.vercel.app?_vercel_share=Moo3guoKziHngm2F0diWsAGcYQYSJgVT
 
-First, run the development server:
+GitHub Repo：
+https://github.com/lesterli0/visual-span-game
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+此為完成 React / Next.js 網路課程後的練習專案，靈感來自瞬時數字記憶遊戲
+目前實作重點放在熟悉react的state,流程設計,與 UI / logic 分離
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+核心流程：
+定義三個 phase：idle → showing → answering
+idle：等待開始（除第一次外會顯示上一輪結果）
+showing：顯示隨機 3 位數字 1 秒
+answering：使用者輸入答案並提交
+提交後比較 input 與 answer，回到 idle 顯示結果
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+UI 與遊戲邏輯分離
+核心狀態與流程抽成 custom hook：useVisualSpanGame
+Hook負責：
+phase控制
+隨機數生成
+timer lifecycle
+input/result判斷管理
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+hook支援注入位數長度及顯示時間
+因再來還想要修改規則：
+每次答對自動增加一位數
+記錄使用者記憶最高紀錄，所以result將從boolean改為int
+phase一樣會是idle → showing → answering
+只是會依照上次答題正確與否決定要開新局或是增加位數
