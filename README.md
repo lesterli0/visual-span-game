@@ -1,7 +1,7 @@
 # Visual Span (Next.js)
 
 線上 Demo：
-https://visual-span-demo.vercel.app?_vercel_share=Moo3guoKziHngm2F0diWsAGcYQYSJgVT
+https://visual-span-game.vercel.app?_vercel_share=ZGALNQD58axQX86EtMiFG21sFDcLJj08
 
 GitHub Repo：
 https://github.com/lesterli0/visual-span-game
