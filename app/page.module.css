@@ -1,0 +1,100 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  width: min(520px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  border-radius: 16px;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.display {
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.number {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: 6px;
+}
+
+.controls {
+  min-height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls {
+  min-height: 120px; /* 讓 input + 按鈕有足夠空間 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controlsStack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch; /* 讓 input/按鈕同寬 */
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  background: transparent;
+}
+
+.inputHidden {
+  visibility: hidden; /* 看不見，但保留高度/佔位 */
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.primaryButton {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.primaryButton:hover:enabled {
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.primaryButton:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
