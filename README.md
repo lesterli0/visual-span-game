@@ -6,11 +6,15 @@ https://visual-span-game.vercel.app?_vercel_share=ZGALNQD58axQX86EtMiFG21sFDcLJj
 GitHub Repo：
 https://github.com/lesterli0/visual-span-game
 
+0204新增:
+- 答對自動進入下一關（數字位數 +1）
+- 答錯顯示本局最高記憶位數並重置遊戲
+- input / button 依 phase 動態 render
+
+---
 
 此為完成 React / Next.js 網路課程後的練習專案，靈感來自瞬時數字記憶遊戲。  
 目前實作重點放在熟悉 React state、流程設計，以及 UI / logic 分離。
-
----
 
 ## 核心流程
 
@@ -54,8 +58,7 @@ Hook 負責：
 預計加入：
 
 - 每次答對自動增加一位數
-- 記錄使用者記憶最高紀錄
-- result 從 boolean 改為 int
+- 記錄使用者本局記憶上限
 
 phase 仍維持：
 
